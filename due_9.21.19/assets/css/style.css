@@ -89,15 +89,51 @@ input[type=submit] {
     display: table;
     clear: both;
 }
-.picidcol1{
+.picidhm{
     background-color: #4aaaa5;
     color: #ffffff;
-    margin-left: 65px;
+    margin: 16px 10px;
+    width: 200px;
+    position: relative;
+    top: -43px;
+    left: 0px;
+    padding: 10px 73px 10px 58px;   
 }
-.picidcol2{
+.picidrpg{
     background-color: #4aaaa5;
     color: #ffffff;
-    margin-left: 156px;
+    width: 200px;    
+    position: relative;
+    top: -43px;
+    left: 5px;
+    padding: 10px 70px 10px 47px;
+}
+.picidtrivia{
+    background-color: #4aaaa5;
+    color: #ffffff;
+    width: 200px;    
+    position: relative;
+    top: -43px;
+    left: 10px;
+    padding: 10px 80px 10px 81px;
+}
+.picidwidget{
+    background-color: #4aaaa5;
+    color: #ffffff;
+    width: 200px;    
+    position: relative;
+    top: -43px;
+    left: 26px;
+    padding: 10px 32px 10px 27px;
+}
+.picidrps{
+    background-color: #4aaaa5;
+    color: #ffffff;
+    width: 200px;    
+    position: relative;
+    top: -43px;
+    left: 10px;
+    padding: 10px 22px 10px 30px;
 }
 
 /* Footer */
