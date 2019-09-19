@@ -39,8 +39,10 @@ a{
 }
 
 a:hover{
-    color: #4aaaa5
+    color: #4aaaa5;
+    cursor: pointer;
 }
+
 
 /* Main body  */
 #maincontent{
