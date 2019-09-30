@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Password Generator</h1>
+    </header>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Generate a Password</h5>
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" id="password" placeholder="Your Secure Password" rows="3"></textarea>
+          </div>
+        </form>
+
+        <button type="button" id="make" class="btn btn-danger">Generate Password</button>
+        <button type="button" id="copy" class="btn btn-success">Copy to Clipboard</button>
+      </div>
+    </div>
+    <script src="actions.js"></script>
+  </body>
+</html>

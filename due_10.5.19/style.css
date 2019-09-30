@@ -1,0 +1,13 @@
+header{
+    text-align: center;
+}
+
+.card{
+    margin: 5px 20%;
+}
+#password{
+    text-align: center;
+}
+#copy{
+    float: right;
+}
