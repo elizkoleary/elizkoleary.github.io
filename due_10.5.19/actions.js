@@ -1,82 +1,66 @@
-    var character = prompt("How many characters does your password need to be? (Between 8 and 128 characters)");
-    var specialchar = confirm("Do you need a special character?");
-    var number = confirm("Do you need a number");
-    var upper = confirm("Do you need UPPER case letters?");
-    var lower = confirm("Do you need lower case letters?");
+//arrays
+var special = ['!','#','$','%','&','*','+','-','/',':',';','<','=','>','?','@','~'];
+var number = [0,1,2,3,4,5,6,7,8,9];
+var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-    if (character>128 || character<8){
-        alert("Please choose a number between 8-128")
-    }
-    
-    function password_generator( len ) {
-    var length = (len)?(len):(10);
-    var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
-    var numeric = '0123456789';
-    var punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
-    var password = "";
-    var character = "";
-    var crunch = true;
-    while( password.length<length ) {
-        entity1 = Math.ceil(string.length * Math.random()*Math.random());
-        entity2 = Math.ceil(numeric.length * Math.random()*Math.random());
-        entity3 = Math.ceil(punctuation.length * Math.random()*Math.random());
-        hold = string.charAt( entity1 );
-        hold = (password.length%2==0)?(hold.toUpperCase()):(hold);
-        character += hold;
-        character += numeric.charAt( entity2 );
-        character += punctuation.charAt( entity3 );
-        password = character;
-    }
-    password=password.split('').sort(function(){return 0.5-Math.random()}).join('');
-    return password.substr(0,len);
+//empty array to add arrays too
+var arr = [];
+
+
+//onclick the questions should pop
+document.getElementById("make").addEventListener("click", function(){
+var character = prompt("How many characters does your password need to be? (Between 8 and 128 characters)");
+if (character>128 || character<8){
+    alert("Please choose a number between 8-128")
+}
+else {var specialQ = confirm("Do you need a special character?");
+    var numberQ = confirm("Do you need a number");
+    var upperQ = confirm("Do you need UPPER case letters?");
+    var lowerQ = confirm("Do you need lower case letters?");
+};
+
+//this function looks at the answers from the popups and adds the appropriate array to the empty arr
+function array_maker (){ 
+if (specialQ === true){
+arr.push (special)
 }
 
-    document.getElementById("password").value = password_generator();
+else if (numberQ === true){
+    arr.push (number)
+   
+}
+else if (upperQ === true){
+    arr.push (upper)
+   
+}
+else if (lowerQ === true){
+    arr.push (lower)
+   
+}
+else {
+    alert("please choose at least one option")
+}
+};
 
-    document.execCommand('copy')
+//this function shuffles the empty arr and cycles through based on the number input by user
+function password_generator(){
+for (var i=0; i<character; i++){
+    shuffle.arr   
+}
+//write to the textarea
+document.getElementById("password").value = password_generator();
 
+//copy button function
+document.getElementById("copy").addEventListener("click", function(){
+    var copyText = document.getElementById("copy");
 
-
-//need to create responses if person chooses wrong number
-//need to create a response if people choose no options
-
-// these are the arrays i think i need//
-// var arrspecialChar = ['!','#','$','%','&','(',')','*','+','-','/',':',';','<','=','>','?','@','[','^','{','|','}','~'];
-// var arrnumber = [0,1,2,3,4,5,6,7,8,9];
-// var arrupper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-// var arrlower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// //answers yes to all questions
-// var arr1 = ['!','#','$','%','&','(',')','*','+','-','/',':',';','<','=','>','?','@','[','^','{','|','}','~',0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// // answers specialchar no, number yes, upper yes, lower yes
-// var arr2 = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// // answers specialchar no, number no,upper yes, lower yes
-// var arr3 = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// // answers specialchar no, number no,upper no, lower yes
-// var arr4 = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-// //variables i think i nee
-// // var prompt = 
-// // i want to create a for loop to repeat based on var length
-// // create a string use math.random and arrchar for each run through the for loop
-
-
-// if (character>128 || character <8){
-//     alert("Please choose a number between 8-128")
-// }
-// // for (var i=0; i<length; i++){
-// //     console.log ()
-// // }
-// var i = 0;
-// var text = test
-// var speed = 50;
-
-// function typeWriter() {
-//   if (i < length) {
-//     document.getElementById("password").innerHTML += txt.charAt(i);
-//     i++;
-//     setTimeout(typeWriter, speed);
-// }
+    /* Select the text field */
+    copyText.select();
+  
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+  
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+  }
