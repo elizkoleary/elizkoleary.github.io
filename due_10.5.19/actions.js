@@ -1,12 +1,14 @@
-document.getElementById("make").onclick = function() { 
-var character = prompt("How many characters does your password need to be? (Between 8 and 128 characters)");
-var specialchar = confirm("Do you need a special character?");
-var number = confirm("Do you need a number");
-var upper = confirm("Do you need UPPER case letters?");
-var lower = confirm("Do you need lower case letters?");
-};
+    var character = prompt("How many characters does your password need to be? (Between 8 and 128 characters)");
+    var specialchar = confirm("Do you need a special character?");
+    var number = confirm("Do you need a number");
+    var upper = confirm("Do you need UPPER case letters?");
+    var lower = confirm("Do you need lower case letters?");
 
-function password_generator( len ) {
+    if (character>128 || character<8){
+        alert("Please choose a number between 8-128")
+    }
+    
+    function password_generator( len ) {
     var length = (len)?(len):(10);
     var string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
     var numeric = '0123456789';
@@ -28,9 +30,10 @@ function password_generator( len ) {
     password=password.split('').sort(function(){return 0.5-Math.random()}).join('');
     return password.substr(0,len);
 }
-document.getElementById("password").value = password_generator();
-// console.log( password_generator() );
 
+    document.getElementById("password").value = password_generator();
+
+    document.execCommand('copy')
 
 
 
