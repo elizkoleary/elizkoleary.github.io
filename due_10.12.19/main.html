@@ -1,0 +1,105 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coding Quiz Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  </head>
+
+<header>
+    <h5 id="score">View High Score</h5>
+    <h5 id="timer">Timer</h5><div id="seconds">60</div>
+
+</header>
+<body>
+  <div id=instructions>  
+    <h1>Coding Quiz Challenge</h1>       
+    <p>Try to answer the following code-related questions within the time limit. <br>Keep in mind that incorrect answers will penalize your scoretime bky ten seconds.</p>
+        <div class="col-md-12 text-center"> 
+          <button type="button" id="startbutton" class="btn btn-primary">Start Quiz</button>
+        </div>        
+  </div>
+  <div id=q1>  
+      <h1>Commonly used data types DO NOT include:</h1>       
+      <button type="button" class="q1incorrect" class="btn btn-primary">1. Strings</button><br>
+      <button type="button" class="q1incorrect" class="btn btn-primary">2. Booleans</button><br>
+      <button type="button" class="q1correct" class="btn btn-primary">3. Alerts</button><br>
+      <button type="button" class="q1incorrect" class="btn btn-primary">4. Numbers</button>
+  </div>
+    <div id=q2>  
+        <h1>The condition in an if/else statement is enclosed within ____.</h1>       
+        <button type="button" class="q2incorrect" class="btn btn-primary">1. Quotes</button><br>
+        <button type="button" class="q2incorrect" class="btn btn-primary">2. Curly Brackets</button><br>
+        <button type="button" class="q2correct" class="btn btn-primary">3. Parentheses</button><br>
+        <button type="button" class="q2incorrect" class="btn btn-primary">4. Square Brackets</button>
+    </div>
+    <div id=q3>  
+        <h1>Arrays in JavaScript can be used to store______.</h1>       
+        <button type="button" class="q3incorrect" class="btn btn-primary">1. Numbers and strings</button><br>
+        <button type="button" class="q3incorrect" class="btn btn-primary">2. Other arrays</button><br>
+        <button type="button" class="q3incorrect" class="btn btn-primary">3. Booleans</button><br>
+        <button type="button" class="q3correct" class="btn btn-primary">4. All of the above</button>
+    </div>
+    <div id=q4>  
+        <h1>String values must be enclosed within_____ when being assigned to variables.</h1>     
+        <button type="button" class="q4incorrect" class="btn btn-primary">1. Commas</button><br>
+        <button type="button" class="q4incorrect" class="btn btn-primary">2. Curly Brackets</button><br>
+        <button type="button" class="q4correct" class="btn btn-primary">3. Quotes</button><br>
+        <button type="button" class="q4incorrect" class="btn btn-primary">4. Parentheses</button>
+    </div>
+    <div id=q5>  
+        <h1>A very useful tool used during development and debugging for printing content to the debugger is:</h1>       
+        <button type="button" class="q5incorrect" class="btn btn-primary">1. JavaScript</button><br>
+        <button type="button" class="q5incorrect" class="btn btn-primary">2. Terminal/Bash</button><br>
+        <button type="button" class="q5incorrect" class="btn btn-primary">3. for loops</button><br>
+        <button type="button" class="q5correct" class="btn btn-primary">4. console.log</button>
+    </div>
+    <div id=finished>  
+        <h1>All Done!</h1>    
+        <p>Your final Score is:</p> <div id=score></div> 
+        <input class="form-control" type="text" placeholder="Enter Initials"> 
+        <button id="initialsubmit" class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+    <div id=highscore>  
+        <h1>HighScores</h1>    
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Place</th>
+                <th scope="col">Initials</th>
+                <th scope="col">Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>ABC</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>def</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>ghi</td>
+                <td>8</td>
+              </tr>
+            </tbody>
+          </table> 
+      <button type="button" id="goBack" class="btn btn-primary">Go Back</button>
+      <button type="button" id="clearScores" class="btn btn-primary">Clear High scores</button>
+
+    </div>
+
+<script src="script.js"></script>
+</body>
+
+
+
+

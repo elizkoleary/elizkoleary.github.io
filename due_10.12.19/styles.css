@@ -1,0 +1,37 @@
+#score{
+    float: left;
+}
+
+#timer{
+    float: right;
+}
+#seconds{
+    float: right;
+}
+h1{
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+#startbutton {
+    text-align: center;
+}
+#q1 {
+display: none;
+}
+#q2 {
+    display: none;
+}
+#q3 {
+    display: none;
+}#q4 {
+    display: none;
+}#q5 {
+    display: none;
+}#finished {
+    display: none;
+}
+#highscore {
+    display: none;
+}
