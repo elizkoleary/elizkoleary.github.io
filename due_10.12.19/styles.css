@@ -1,4 +1,4 @@
-#score{
+#scoreview{
     float: left;
 }
 
@@ -18,7 +18,7 @@ p {
     text-align: center;
 }
 #q1 {
-display: none;
+    display: none;
 }
 #q2 {
     display: none;
@@ -34,4 +34,10 @@ display: none;
 }
 #highscore {
     display: none;
+}
+#scoresentence{
+    margin-bottom: 0%;
+}
+#scoreis{
+    text-align: center;
 }
