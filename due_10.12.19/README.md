@@ -8,7 +8,7 @@
 
 ## Overview
 
-Portfolio Project using JavaScript. This website was designed using Bootstrap and JavaScript to create a random password generator based on input from a user. This website can be used by employers to see my use of Bootstrap, HTML, CSS and Javascript.  
+Portfolio Project using JavaScript. This website was designed using Bootstrap and JavaScript to create a quiz game. The timer is adjusted based on true or false answers.  This website can be used by employers to see my use of Bootstrap, HTML, CSS and Javascript.  
 
 ## Installation
 
@@ -17,12 +17,12 @@ This Website was designed for use on Google Chrome. Other browsers may not be fu
 
 ## Usage 
 
-This website can be used to create a random password given user input of character length, use of numbers, special characters, upper and lower case letters.       
+This website is am online quiz game. While the game is functional and questions and answers are accurate, the true purpose is to demonstrate my knowldege of JavaScript   
 
 
 ## Credits
 
-I used Bootstrap for many of the elements in this website
+I used Bootstrap and jQueryfor many of the elements in this website
 
 
 
