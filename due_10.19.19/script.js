@@ -13,28 +13,28 @@ $(".seventeenhour").text(moment().format("17:" + "00"))
 if (now < $(".hour").val()) {
     $("textarea").addClass("future")
 }
-if (now > $(".hour").val()) {
+else if (now > $(".hour").val()) {
     $("textarea").addClass("past")
 }
-if (now == $(".hour").val()) {
+else (now === $(".hour").val()); {
     $("textarea").addClass("present")
 }
 
-$(".row").on("click",".saveBtn", function () {
+$(".row").on("click", ".saveBtn", function () {
     var key = $(this).data("time")
     console.log(key)
-    var textarea = $("textarea."+key)
+    var textarea = $("textarea." + key)
     var value = textarea.val().trim()
     console.log(value)
-    localStorage.setItem(key,value)
+    localStorage.setItem(key, value)
 })
 
 $(document).ready(function () {
     var keys = Object.keys(localStorage)
     console.log(keys)
-    for (var i=0; i<keys.length; i++){
-        var item= localStorage.getItem(keys[i])
-        $("textarea."+keys[i]).text(item)
+    for (var i = 0; i < keys.length; i++) {
+        var item = localStorage.getItem(keys[i])
+        $("textarea." + keys[i]).text(item)
 
     }
 });
