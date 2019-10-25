@@ -1,0 +1,9 @@
+.jumbotron{
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+.weatherdetail{
+margin-right: 0%;
+float: left;
+}
