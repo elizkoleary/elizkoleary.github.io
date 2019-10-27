@@ -11,7 +11,7 @@ $(".btn").on("click", function (event) {
         var cityName = response.name
         iconCode = response.weather[0].icon
         var icon = "http://openweathermap.org/img/w/"+iconCode+".png"
-        $(".pastCityName").prepend("<button type='button' class='light'>" + cityName + "</button>");
+        $(".pastCityName").prepend("<button type='button' class='light'id='oldCityBtn'>" + cityName + "</button>");
         $(".city").text(cityName + " ("+moment().format('L')+")");
         $(".icon").html("<img src='" + icon  + "'>");        
         $(".temp").text("Temperature (F): " + response.main.temp);
@@ -40,8 +40,8 @@ $(".btn").on("click", function (event) {
         var iconFour = "http://openweathermap.org/img/w/"+iconCodeFour+".png"
         iconCodeFive = response.list[30].weather[0].icon
         var iconFive = "http://openweathermap.org/img/w/"+iconCodeFive+".png"
-        var lat = response.city.coord.lat;
-        var lon = response.city.coord.lon;
+        lat = response.city.coord.lat;
+        lon = response.city.coord.lon;
 
         $(".dateOne").text(moment().add(1,'d'));
         $(".iconOne").html("<img src='" + iconOne  + "'>");
@@ -71,8 +71,8 @@ $(".btn").on("click", function (event) {
     });
 });
 
-// lat = response.city.coord.lat;
-// lon = response.city.coord.lon;
+// var lat = response.city.coord.lat;
+// var lon = response.city.coord.lon;
 // console.log(lat)
 // console.log(lon)
 // $(".btn").on("click", function (event) {
@@ -102,8 +102,9 @@ cityList.push({cityInput})
 localStorage.setItem("city",JSON.stringify(cityList))
 });
 
-// $(".light").on("click", function (event) {
-//     event.preventDefault();
-//     var city=localStorage.getItem("cityInput");
-//     $(".cityName").text(this.id)
-// });
+$(".light").on("click","#oldCityBtn", function (event) {
+    event.preventDefault();
+    oldCity=localStorage.getItem("cityInput",data);
+    $(".cityName").text(oldCity)
+});
+
