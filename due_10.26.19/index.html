@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="styles.css" />
 
@@ -17,23 +16,67 @@
     <div class="jumbotron">
         <h1 class="display-4">Weather Dashboard</h1>
     </div>
-    <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-        <form class="bd-search d-flex align-items-center">
-            <textarea class="cityName"></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <div class="city"></div>
+    <div class=container>
+        <div class=row>
+            <div class="col-md-4">
+            <form class="bd-search d-flex align-items-center">
+                <textarea class="cityName"></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <br>
+            <div class="pastCityName"></div>
+        </div>
+            <div class="col-md-8" id="forecast">
+                <div class="city"></div>
+                <div class="icon"></div>
+                <div class="temp"></div>
+                <div class="humidity"></div>
+                <div class="wind"></div>
+                <div class="uv"></div>
+    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" id="fiveDayForecast">5-Day Forecast</div>
+            <div class="row">
+                <div class="col-md-2.4 dayOne">
+                    <div class="dateOne"></div>
+                    <div class="iconOne"></div>
+                    <div class="tempOne"></div>
+                    <div class="humidityOne"></div>
+                </div>
+                <div class="col-md-2.4 dayTwo">
+                        <div class="dateTwo"></div>
+                        <div class="iconTwo"></div>
+                        <div class="tempTwo"></div>
+                        <div class="humidityTwo"></div>
+                    </div>
+    
+                <div class="col-md-2.4 dayThree">
+                        <div class="dateThree"></div>
+                        <div class="iconThree"></div>
+                        <div class="tempThree"></div>
+                        <div class="humidityThree"></div>
+                    </div>
 
-        <div class="container"></div>
+                <div class="col-md-2.4 dayFour">
+                        <div class="dateFour"></div>
+                        <div class="iconFour"></div>
+                        <div class="tempFour"></div>
+                        <div class="humidityFour"></div>
+                    </div>
+
+                <div class="col-md-2.4 dayFive">
+                        <div class="dateFive"></div>
+                        <div class="iconFive"></div>
+                        <div class="tempFive"></div>
+                        <div class="humidityFive"></div>
+                    </div>
+
+            </div>
+        </div>
     </div>
-    <div class="temp"></div>
-    <div class="wind"></div>
-    <div class="humidity"></div>
-
-    <div class="row">>
-        <div class="fiveday col-md-12"></div>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="script.js"></script>
 
 </body>

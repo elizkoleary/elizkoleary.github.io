@@ -3,7 +3,41 @@
     background-color: black;
     color: white;
 }
-.weatherdetail{
-margin-right: 0%;
-float: left;
+.city{
+    font-size: x-large;
+}
+#fiveDayForecast{
+    font-size: x-large;
+}
+#forecast{
+    border: 1px solid grey;
+}
+.dayOne{
+    background-color: blue;
+    color: white;
+    border: 10px solid white;
+}
+.dayTwo{
+    background-color: blue;
+    color: white;
+    border: 10px solid white;
+
+}
+.dayThree{
+    background-color: blue;
+    color: white;
+    border: 10px solid white;
+
+}
+.dayFour{
+    background-color: blue;
+    color: white;
+    border: 10px solid white;
+
+}
+.dayFive{
+    background-color: blue;
+    color: white;
+    border: 10px solid white;
+
 }
