@@ -3,14 +3,16 @@ $(".btn").on("click", function (event) {
     var city = $(".cityName").val();
     event.preventDefault();
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+    var proxy = "https://chriscastle.com/proxy/index.php?:proxy:";
 
     $.ajax({
-        url: queryURL,
+        url: proxy + queryURL,
+        dataType: 'json',
         type: "GET"
     }).then(function (response) {
         var cityName = response.name
         iconCode = response.weather[0].icon
-        var icon = "http://openweathermap.org/img/w/"+iconCode+".png"
+        var icon = "https://openweathermap.org/img/w/"+iconCode+".png"
         $(".pastCityName").prepend("<button type='button' class='light'id='oldCityBtn'>" + cityName + "</button>");
         $(".city").text(cityName + " ("+moment().format('L')+")");
         $(".icon").html("<img src='" + icon  + "'>");        
@@ -22,27 +24,30 @@ $(".btn").on("click", function (event) {
 
 $(".btn").on("click", function (event) {
     APIKey = "166a433c57516f51dfab1f7edaed8413";
-    city = $(".cityName").val();
+    var city = $(".cityName").val();
     event.preventDefault();
-    var queryFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&appid=" + APIKey;
-
+    var queryFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",us&appid=" + APIKey;
+    var proxy = "https://chriscastle.com/proxy/index.php?:proxy:";
     $.ajax({
+        url: proxy + queryFiveDay,
+        dataType: 'json',
         url: queryFiveDay,
         type: "GET"
     }).then(function (response) {
         iconCodeOne = response.list[0].weather[0].icon
-        var iconOne = "http://openweathermap.org/img/w/"+iconCodeOne+".png"
+        var iconOne = "https://openweathermap.org/img/w/"+iconCodeOne+".png"
         iconCodeTwo = response.list[7].weather[0].icon
-        var iconTwo = "http://openweathermap.org/img/w/"+iconCodeTwo+".png"
+        var iconTwo = "https://openweathermap.org/img/w/"+iconCodeTwo+".png"
         iconCodeThree = response.list[15].weather[0].icon
-        var iconThree = "http://openweathermap.org/img/w/"+iconCodeThree+".png"
+        var iconThree = "https://openweathermap.org/img/w/"+iconCodeThree+".png"
         iconCodeFour = response.list[23].weather[0].icon
-        var iconFour = "http://openweathermap.org/img/w/"+iconCodeFour+".png"
+        var iconFour = "https://openweathermap.org/img/w/"+iconCodeFour+".png"
         iconCodeFive = response.list[30].weather[0].icon
-        var iconFive = "http://openweathermap.org/img/w/"+iconCodeFive+".png"
-        lat = response.city.coord.lat;
-        lon = response.city.coord.lon;
-
+        var iconFive = "https://openweathermap.org/img/w/"+iconCodeFive+".png"
+        var lat = response.city.coord.lat;
+        var lon = response.city.coord.lon;
+console.log(lat)
+console.log(lon)
         $(".dateOne").text(moment().add(1,'d'));
         $(".iconOne").html("<img src='" + iconOne  + "'>");
         $(".tempOne").text("Temp F: "+((response.list[0].main.temp - 273.15) * 1.80 + 32).toFixed(0));
@@ -67,44 +72,39 @@ $(".btn").on("click", function (event) {
         $(".iconFive").html("<img src='" + iconFive  + "'>");
         $(".tempFive").text("Temp F: "+((response.list[30].main.temp - 273.15) * 1.80 + 32).toFixed(0));
         $(".humidityFive").text("Humidity:"+response.list[30].main.humidity);
-
+    
+    var queryUV = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&apikey=" + APIKey;
+    $.ajax({
+        url: proxy + queryUV,
+        dataType: 'json',
+        type: "GET"
+    }).then(function (response) {
+       console.log(response)
+        $(".uv").text("UV Index: " + response.value);
     });
 });
+});
 
-// var lat = response.city.coord.lat;
-// var lon = response.city.coord.lon;
-// console.log(lat)
-// console.log(lon)
+// var cityList=[];
 // $(".btn").on("click", function (event) {
-//     APIKey = "166a433c57516f51dfab1f7edaed8413";
 //     event.preventDefault();
-//     var queryUV = "http://api.openweathermap.org/data/2.5/uvi?appid="+APIKey+"&lat="+lat+"&lon="+lon;
 
-//     $.ajax({
-//         url: queryUV,
-//         type: "GET"
-//     }).then(function (response) {
-//         $(".uv").text("UV Index: " + response.value);
-//     });
+//     var cityInput = $(".cityName").val();
+
+// cityList=JSON.parse(localStorage.getItem("city"))
+// if (!cityList){
+//     cityList=[]
+// }
+// cityList.push({cityInput})
+// localStorage.setItem("city",JSON.stringify(cityList))
 // });
 
-var cityList
-$(".btn").on("click", function (event) {
-    event.preventDefault();
+// $( document ).ready(function()
+// {localStorage.getItem("city")
+// $(".oldCityName").text(city)})
 
-    var cityInput = $(".cityName").val();
-
-cityList=JSON.parse(localStorage.getItem("city"))
-if (!cityList){
-    cityList=[]
-}
-cityList.push({cityInput})
-localStorage.setItem("city",JSON.stringify(cityList))
-});
-
-$(".light").on("click","#oldCityBtn", function (event) {
-    event.preventDefault();
-    oldCity=localStorage.getItem("cityInput",data);
-    $(".cityName").text(oldCity)
-});
-
+// $(".light").on("click","#oldCityBtn", function (event) {
+//     event.preventDefault();
+//     oldCity=localStorage.getItem("cityInput",data);
+//     $(".cityName").text(oldCity)
+// });
