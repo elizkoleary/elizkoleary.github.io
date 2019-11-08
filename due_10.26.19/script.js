@@ -46,8 +46,7 @@ $(".btn").on("click", function (event) {
         var iconFive = "https://openweathermap.org/img/w/"+iconCodeFive+".png"
         var lat = response.city.coord.lat;
         var lon = response.city.coord.lon;
-console.log(lat)
-console.log(lon)
+
         $(".dateOne").text(moment().add(1,'d'));
         $(".iconOne").html("<img src='" + iconOne  + "'>");
         $(".tempOne").text("Temp F: "+((response.list[0].main.temp - 273.15) * 1.80 + 32).toFixed(0));
@@ -85,26 +84,23 @@ console.log(lon)
 });
 });
 
-// var cityList=[];
-// $(".btn").on("click", function (event) {
-//     event.preventDefault();
+var cityList=[];
+$(".btn").on("click", function (event) {
+    event.preventDefault();
 
-//     var cityInput = $(".cityName").val();
+    var cityInput = $(".cityName").val();
 
-// cityList=JSON.parse(localStorage.getItem("city"))
-// if (!cityList){
-//     cityList=[]
-// }
-// cityList.push({cityInput})
-// localStorage.setItem("city",JSON.stringify(cityList))
-// });
+cityList=JSON.parse(localStorage.getItem("city"))
+if (!cityList){
+    cityList=[]
+}
+cityList.push({cityInput})
+localStorage.setItem("city",JSON.stringify(cityList))
+});
 
-// $( document ).ready(function()
-// {localStorage.getItem("city")
-// $(".oldCityName").text(city)})
-
-// $(".light").on("click","#oldCityBtn", function (event) {
-//     event.preventDefault();
-//     oldCity=localStorage.getItem("cityInput",data);
-//     $(".cityName").text(oldCity)
-// });
+$(".light").on("click", function() {
+    var title = $(this).attr("data-name");
+    console.log(title)
+    $(".cityName").empty()
+    $(".cityName").text(title)
+  });
