@@ -19,16 +19,26 @@ h1{
     font-family: 'Georgia', Times, 'Times New Roman', serif;
 
 }
+.btn-secondary {
+    color: #fff;
+    background-color: white;
+    border-color: #6c757d;
+}
+.btn-primary {
+    color: #fff;
+    background-color: white;
+    border-color: #6c757d;
+}
 
 nav{
     background-color: #ffffff;
 }
-a{
+.headlink{
     text-decoration: none;
     color: #777777;
 }
 
-a:hover{
+.headlink:hover{
     color: #4aaaa5;
     cursor: pointer;
 }
@@ -61,12 +71,11 @@ h2{
 .col-md-5{
     float: left;
 }
+.pic{
+    float: left;
+}
 
 /* Contact Page */
-.btn{
-    background-color: #4aaaa5;
-    color: #ffffff;
-}
 .contactInfo{
     color: #777777;
 }
@@ -81,10 +90,6 @@ h5{
 
 .card{
     margin-top: 10px;
-}
-.BTSLink{
-    color: #4aaaa5;;
-    font-size: x-large;
 }
 /* Footer */
 
