@@ -1,0 +1,17 @@
+{
+  "name": "github_profile",
+  "version": "1.0.0",
+  "description": "create a pdf of github info",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "electron-pdf": "^4.0.8",
+    "html-pdf": "^2.2.0",
+    "inquirer": "^7.0.0"
+  }
+}
