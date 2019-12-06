@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
   // Your password
   password: "Kelley22!",
-  database: "employee_trackerDB"
+  database: "Fake_Inc"
 });
 
 connection.connect(function (err) {
@@ -71,25 +71,11 @@ function runSearch() {
       }
     });
 }
-//continue editing from here
-function artistSearch() {
-  inquirer
-    .prompt({
-      name: "artist",
-      type: "input",
-      message: "What artist would you like to search for?"
-    })
-    .then(function (answer) {
-      var query = "SELECT position, song, year FROM top5000 WHERE ?";
-      connection.query(query, { artist: answer.artist }, function (err, res) {
-        for (var i = 0; i < res.length; i++) {
-          console.log("Position: " + res[i].position + " || Song: " + res[i].song + " || Year: " + res[i].year);
-        }
+function allEmployeeSearch() {
+  console.table('Fake_inc.employees',[]);
         runSearch();
-      });
-    });
-}
-
+      }
+//continue editing from here
 function multiSearch() {
   var query = "SELECT artist FROM top5000 GROUP BY artist HAVING count(*) > 1";
   connection.query(query, function (err, res) {
