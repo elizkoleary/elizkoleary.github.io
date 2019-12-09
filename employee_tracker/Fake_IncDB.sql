@@ -1,0 +1,1 @@
+SELECT * FROM Fake_Inc.employees;
