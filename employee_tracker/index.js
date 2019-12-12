@@ -11,7 +11,6 @@ var connection = mysql.createConnection({
   database: "Fake_Inc"
 });
 
-let allEmployees = []
 
 connection.connect(function (err) {
   if (err) throw err;
@@ -67,7 +66,7 @@ function runSearch() {
           break;
 
         case "Done":
-          done();
+          end();
           break;
 
       }
@@ -76,15 +75,15 @@ function runSearch() {
 function allEmployeeSearch() {
   connection.query("SELECT * FROM employees", function (err, result) {
     if (err) throw err;
-    allEmployees = result
-    console.table(allEmployees)
-  });
-  runSearch();
-}
+    console.table(result)
+  })
+   runSearch();
+};
+
 function employeeByDeptSearch() {
   inquirer.prompt({
+    type: "list",
     name: "department",
-    type: "rawlist",
     message: "What Department do you want to see?",
     choices: [
       "Sales",
@@ -93,117 +92,188 @@ function employeeByDeptSearch() {
       "Legal",
     ]
   })
-    .then(function (answer) {
-      connection.query('SELECT `firstName, lastName` FROM `employees` WHERE `department` = ?', [answer], function (error, results) {
+    .then(function (name) {
+      connection.query("SELECT * FROM Fake_Inc.employees WHERE ?", name, function (error, res) {
+        if (error) throw error;
+        console.table(res)
+      })
+    })
+    .then(function () {
+      runSearch();
+    })
+};
+
+function employeeByMgrSearch() {
+  inquirer.prompt({
+    name: "manager",
+    type: "rawlist",
+    message: "Select a Manager to see their direct reports?",
+    choices: [
+      "Ashley Rodriguez",
+      "Mike Chan",
+      "John Doe",
+      "Sarah Lourd",
+    ]
+  })
+    .then(function (manager) {
+      connection.query("SELECT firstName, lastName FROM Fake_Inc.employees WHERE ?", manager, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
-      });
+    })
+    .then(function () {
       runSearch();
-    };
- 
-  function employeeByMgrSearch() {
-    inquirer.prompt({
+    })
+};
+
+function addEmployee() {
+  inquirer
+    .prompt([{
+      name: "firstName",
+      type: "input",
+      message: "What is the Employee's first name?"
+    },
+
+    {
+      name: "lastName",
+      type: "input",
+      message: "What is the Employee's last name?"
+    },
+
+    {
+      name: "title",
+      type: "input",
+      message: "What is the Employee's title?"
+    },
+
+    {
+      name: "department",
+      type: "rawlist",
+      message: "What Department will they work in?",
+      choices: [
+        "Sales",
+        "Engineering",
+        "Finance",
+        "Legal",
+      ]
+    },
+
+    {
+      name: "salary",
+      type: "input",
+      message: "What is the Employee's salary?"
+    },
+
+    {
       name: "manager",
       type: "rawlist",
-      message: "Select a Manager to see their direct reports?",
+      message: "Who will be their manager?",
       choices: [
         "Ashley Rodriguez",
         "Mike Chan",
         "John Doe",
         "Sarah Lourd",
       ]
+    }])
+    .then(function (firstName, lastName, title, department, salary, manager) {
+      console.log(firstName, lastName, title, department, salary, manager)
+      connection.query("INSERT INTO Fake_Inc.employees (firstName,lastName,title,department,salary,manager) VAlUES(?,?,?,?,?,?);", {firstName, lastName, title, department, salary, manager}, function (error, results) {
+        if (error) throw error;
+        console.table(results)
+      })
     })
-      .then(function (answer) {
-        connection.query('SELECT `firstName, lastName` FROM `employees` WHERE `manager` = ?', [answer], function (error, results) {
-          if (error) throw error;
-          console.log(results)
-        })
-      });
+    .then(function () {
       runSearch();
-    };
-        
-      //continue editing from here
+    })
+};
 
-function addEmployee() {
-        inquirer
-          .prompt({
-            name: "firstName",
-            type: "input",
-            message: "What is the Employee's first name?",
+function removeEmployee() {
+  inquirer
+    .prompt([
+    {
+      name: "lastName",
+      type: "input",
+      message: "What is the Employee's last name that you want to delete?"
+    },
+    ])
+    .then(function (lastName) {
+      connection.query("DELETE FROM Fake_Inc.employees WHERE ?", lastName, function (error, results) {
+        if (error) throw error;
+        console.table(results)
+      })
+    })
+    .then(function () {
+      runSearch();
+    })
+}
 
-            name: "lastName",
-            type: "input",
-            message: "What is the Employee's last name?",
+function changeEmployeeRole() {
+  inquirer
+    .prompt([
+    {
+      name: "lastName",
+      type: "input",
+      message: "What is the Employee's last name who's role you want to change?"
+    },
+    {
+      name: "title",
+      type: "input",
+      message: "What is the Employee's new title?"
+    },
 
-            name: "title",
-            type: "input",
-            message: "What is the Employee's title?",
+    ])
+    .then(function (answers) {
+      let title = answers.title;
+      let lastName = answers.lastName; 
+      console.log(title)
+      console.log(lastName)
+      connection.query( `UPDATE Fake_Inc.employees SET title = ${lastName}, WHERE lastName = ${title}`, function (error, results, fields) {
+        if (error) throw error;
+        console.log(results, title, lastName)
+        console.table(results)
+      })
+    })
+    .then(function () {
+      runSearch();
+    })
+}
 
-            name: "department",
-            type: "rawlist",
-            message: "What Department will they work in?",
-            choices: [
-              "Sales",
-              "Engineering",
-              "Finance",
-              "Legal",
-            ],
-        
-            name: "salary",
-            type: "input",
-            message: "What is the Employee's salary?",
 
-            name: "manager",
-            type: "rawlist",
-            message: "Who will be their manager?",
-            choices: [
-              "Ashley Rodriguez",
-              "Mike Chan",
-              "John Doe",
-              "Sarah Lourd",
-            ]
-       })
-          .then(function (answer) {
-            connection.query('INSERT INTO `Fake_Inc` (firstName,lastName,title,department,salary,manager) VAlUES(?)', [answer], function (error, results) {
-              if (error) throw error;
-              console.log(results)
-            })
-          });
-          runSearch();
-        };
- //continue editing from here   
-function songAndAlbumSearch() {
-        inquirer
-          .prompt({
-            name: "artist",
-            type: "input",
-            message: "What artist would you like to search for?"
-          })
-          .then(function (answer) {
-            var query = "SELECT top_albums.year, top_albums.album, top_albums.position, top5000.song, top5000.artist ";
-            query += "FROM top_albums INNER JOIN top5000 ON (top_albums.artist = top5000.artist AND top_albums.year ";
-            query += "= top5000.year) WHERE (top_albums.artist = ? AND top5000.artist = ?) ORDER BY top_albums.year, top_albums.position";
+function changeEmployeeMgr() {
+  inquirer
+    .prompt([
+    {
+      name: "lastName",
+      type: "input",
+      message: "What is the Employee's last name who's manager you want to change?"
+    },
+    {
+      name: "manager",
+      type: "rawlist",
+      message: "Who will be their new manager?",
+      choices: [
+        "Ashley Rodriguez",
+        "Mike Chan",
+        "John Doe",
+        "Sarah Lourd",
+      ]
+    }
 
-            connection.query(query, [answer.artist, answer.artist], function (err, res) {
-              console.log(res.length + " matches found!");
-              for (var i = 0; i < res.length; i++) {
-                console.log(
-                  i + 1 + ".) " +
-                  "Year: " +
-                  res[i].year +
-                  " Album Position: " +
-                  res[i].position +
-                  " || Artist: " +
-                  res[i].artist +
-                  " || Song: " +
-                  res[i].song +
-                  " || Album: " +
-                  res[i].album
-                );
-              }
+    ])
+    .then(function (lastName, manager) {
+      console.log (lastName, manager)
+      connection.query("UPDATE Fake_Inc.employees SET manager=? WHERE lastname=?", [manager, lastName], function (error, results) {
+        if (error) throw error;
+        console.table(results)
+      })
+    })
+    .then(function () {
+      runSearch();
+    })
+}
 
-              runSearch();
-            });
-          });
-      }
+function end() {
+  connection.end(function(err) {
+    if (err) throw err;
+    console.log("Process Ended")
+  })};
