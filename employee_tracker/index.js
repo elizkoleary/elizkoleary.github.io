@@ -182,7 +182,7 @@ function addEmployee() {
       var department = answers.department
       var salary = answers.salary
       var manager = answers.manager
-      connection.query(`INSERT INTO Fake_Inc.employees (firstName,lastName,title,department,salary,manager) VAlUES(${firstName},${lastName},${title},${department},${salary},${manager});`, {firstName, lastName, title, department, salary, manager}, function (error, results) {
+      connection.query(`INSERT INTO Fake_Inc.employees (firstName,lastName,title,department,salary,manager) VAlUES('${firstName}','${lastName}','${title}','${department}','${salary}','${manager}');`, {firstName, lastName, title, department, salary, manager}, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
@@ -233,7 +233,7 @@ function changeEmployeeRole() {
       console.log(title)
       console.log(lastName)
       // UPDATE `Fake_Inc`.`employees` SET `title` = 'Awesome' WHERE (`id` = '1');
-      connection.query( `UPDATE Fake_Inc.employees SET title = ${title} WHERE id = ${lastName};`, function (error, results, fields) {
+      connection.query( `UPDATE Fake_Inc.employees SET title = '${title}' WHERE lastName = '${lastName}';`, function (error, results, fields) {
         if (error) throw error;
         console.log(results, title, lastName)
         console.table(results)
@@ -269,7 +269,7 @@ function changeEmployeeMgr() {
     .then(function (answers) {
       var manager = answers.manager
       var lastName = answer.lastName
-      connection.query(`UPDATE Fake_Inc.employees SET manager=${manager} WHERE lastname=${lastName};`, [manager, lastName], function (error, results) {
+      connection.query(`UPDATE Fake_Inc.employees SET manager='${manager}' WHERE lastname='${lastName}';`, [manager, lastName], function (error, results) {
         if (error) throw error;
         console.table(results)
       })
