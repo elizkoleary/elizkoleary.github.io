@@ -3,8 +3,8 @@ var path = require("path");
 var fs = require("fs");
 
 var app = express();
-// var PORT = process.env.PORT ||
-var PORT = 8080
+var PORT = process.env.PORT ||
+// var PORT = 8080
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
