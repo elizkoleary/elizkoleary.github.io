@@ -268,8 +268,8 @@ function changeEmployeeMgr() {
     ])
     .then(function (answers) {
       var manager = answers.manager
-      var lastName = answer.lastName
-      connection.query(`UPDATE Fake_Inc.employees SET manager='${manager}' WHERE lastname='${lastName}';`, [manager, lastName], function (error, results) {
+      var lastName = answers.lastName
+      connection.query(`UPDATE Fake_Inc.employees SET manager='${manager}' WHERE lastname='${lastName}';`, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
