@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-const cTable = require('console.table');
+const table = require('console.table');
 
 
 var connection = mysql.createConnection({
@@ -73,7 +73,7 @@ function runSearch() {
     });
 }
 function allEmployeeSearch() {
-  connection.query("SELECT * FROM employees", function (err, result) {
+  connection.query("SELECT * FROM employees;", function (err, result) {
     if (err) throw err;
     console.table(result)
   })
@@ -93,7 +93,7 @@ function employeeByDeptSearch() {
     ]
   })
     .then(function (name) {
-      connection.query("SELECT * FROM Fake_Inc.employees WHERE ?", name, function (error, res) {
+      connection.query("SELECT * FROM Fake_Inc.employees WHERE ?;", name, function (error, res) {
         if (error) throw error;
         console.table(res)
       })
@@ -116,7 +116,7 @@ function employeeByMgrSearch() {
     ]
   })
     .then(function (manager) {
-      connection.query("SELECT firstName, lastName FROM Fake_Inc.employees WHERE ?", manager, function (error, results) {
+      connection.query("SELECT firstName, lastName FROM Fake_Inc.employees WHERE ?;", manager, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
@@ -175,9 +175,14 @@ function addEmployee() {
         "Sarah Lourd",
       ]
     }])
-    .then(function (firstName, lastName, title, department, salary, manager) {
-      console.log(firstName, lastName, title, department, salary, manager)
-      connection.query("INSERT INTO Fake_Inc.employees (firstName,lastName,title,department,salary,manager) VAlUES(?,?,?,?,?,?);", {firstName, lastName, title, department, salary, manager}, function (error, results) {
+    .then(function (answers) {
+      var firstName = answers.firstName
+      var lastName = answers.lastName
+      var title = answers.title
+      var department = answers.department
+      var salary = answers.salary
+      var manager = answers.manager
+      connection.query(`INSERT INTO Fake_Inc.employees (firstName,lastName,title,department,salary,manager) VAlUES(${firstName},${lastName},${title},${department},${salary},${manager});`, {firstName, lastName, title, department, salary, manager}, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
@@ -197,7 +202,7 @@ function removeEmployee() {
     },
     ])
     .then(function (lastName) {
-      connection.query("DELETE FROM Fake_Inc.employees WHERE ?", lastName, function (error, results) {
+      connection.query("DELETE FROM Fake_Inc.employees WHERE ?;", lastName, function (error, results) {
         if (error) throw error;
         console.table(results)
       })
@@ -227,7 +232,8 @@ function changeEmployeeRole() {
       let lastName = answers.lastName; 
       console.log(title)
       console.log(lastName)
-      connection.query( `UPDATE Fake_Inc.employees SET title = ${lastName}, WHERE lastName = ${title}`, function (error, results, fields) {
+      // UPDATE `Fake_Inc`.`employees` SET `title` = 'Awesome' WHERE (`id` = '1');
+      connection.query( `UPDATE Fake_Inc.employees SET title = ${title} WHERE id = ${lastName};`, function (error, results, fields) {
         if (error) throw error;
         console.log(results, title, lastName)
         console.table(results)
@@ -260,9 +266,10 @@ function changeEmployeeMgr() {
     }
 
     ])
-    .then(function (lastName, manager) {
-      console.log (lastName, manager)
-      connection.query("UPDATE Fake_Inc.employees SET manager=? WHERE lastname=?", [manager, lastName], function (error, results) {
+    .then(function (answers) {
+      var manager = answers.manager
+      var lastName = answer.lastName
+      connection.query(`UPDATE Fake_Inc.employees SET manager=${manager} WHERE lastname=${lastName};`, [manager, lastName], function (error, results) {
         if (error) throw error;
         console.table(results)
       })
