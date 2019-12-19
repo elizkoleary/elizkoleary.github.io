@@ -49,5 +49,3 @@ In this app you will find  a burger logger usiung MySQL, Node, Express, Handleba
     ├── index.handlebars
     └── layouts
         └── main.handlebars
-```
-
