@@ -103,4 +103,5 @@ $(".light").on("click", function() {
     console.log(title)
     $(".cityName").empty()
     $(".cityName").text(title)
+    
   });
