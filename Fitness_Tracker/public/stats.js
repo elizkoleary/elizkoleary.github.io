@@ -186,8 +186,6 @@ function populateChart(data) {
   });
 }
 
-populateChart()
-
 function duration(data) {
   let durations = [];
 
