@@ -8,7 +8,6 @@ function SortForm(props) {
       </div>
       <div className="card-body">
         <br></br>
-        <br></br>
         <h4>Sort Alphabetically by Last Name</h4>
         <br></br>
       </div>

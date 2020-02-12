@@ -6,6 +6,8 @@ import SearchForm from "./SearchForm";
 import PeopleInfo from "./PeopleInfo";
 import PeopleList from "../data/people.json";
 import SortForm from "./SortForm";
+import PeopleSort from "./PeopleSort";
+
 
 class PeopleContainer extends Component {
   state = {
@@ -21,6 +23,12 @@ class PeopleContainer extends Component {
   searchPeople = () => {
     const searchQuery = this.state.search.trim();
     const searchResults = PeopleList.filter((people) => people.name === searchQuery);
+    this.setState({ 'result': searchResults });
+  };
+
+  sortPeople = () => {
+    const searchQuery = this.state.search.trim();
+    const searchResults = PeopleList.sort((people) => people.name === searchQuery);
     this.setState({ 'result': searchResults });
   };
 
@@ -40,6 +48,8 @@ class PeopleContainer extends Component {
 
   handleFormSort = event => {
     event.preventDefault();
+    this.sortPeople();
+
     var nameArray = [PeopleList[0].name.last, 
     PeopleList[1].name.last,
     PeopleList[2].name.last,
