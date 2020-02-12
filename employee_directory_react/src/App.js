@@ -2,7 +2,11 @@ import React from "react";
 import PeopleContainer from "./components/PeopleContainer";
 
 function App() {
-  return <PeopleContainer />;
-}
+  return (
+  <div>
+  <PeopleContainer />;
+
+  </div>
+  )}
 
 export default App;

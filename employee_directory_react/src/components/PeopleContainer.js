@@ -5,6 +5,7 @@ import Col from "./Col";
 import SearchForm from "./SearchForm";
 import PeopleInfo from "./PeopleInfo";
 import PeopleList from "../data/people.json";
+import SortForm from "./SortForm";
 
 class PeopleContainer extends Component {
   state = {
@@ -37,20 +38,45 @@ class PeopleContainer extends Component {
     this.searchPeople();
   };
 
+  handleFormSort = event => {
+    event.preventDefault();
+    var nameArray = [PeopleList[0].name.last, 
+    PeopleList[1].name.last,
+    PeopleList[2].name.last,
+    PeopleList[3].name.last,
+    PeopleList[4].name.last,
+    PeopleList[5].name.last,
+    PeopleList[6].name.last,
+    PeopleList[7].name.last,
+    PeopleList[8].name.last,
+    PeopleList[9].name.last]
+
+    nameArray.sort()
+  console.log(nameArray)
+  };
+
   render() {
     return (
       <Container>
         <Row>
-          <Col size="md-4" />
-          <Col size="md-4">
+          <Col size="md-1" />
+          <Col size="md-5">
             <SearchForm
-              searchtype="First Name"
+              searchtype="People"
               value={this.state.search}
               handleInputChange={this.handleInputChange}
               handleFormSubmit={this.handleFormSubmit}
             />
           </Col>
-          <Col size="md-4" />
+          <Col size="md-5">
+            <SortForm
+              searchtype="People"
+              value={this.state.search}
+              handleFormSort={this.handleFormSort}
+            />
+          </Col>
+
+          <Col size="md-1" />    
         </Row>
         <Row>
           <Col size="md-12">

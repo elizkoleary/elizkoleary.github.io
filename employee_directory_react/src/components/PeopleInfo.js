@@ -25,3 +25,4 @@ function PeopleInfo(props) {
 }
 
 export default PeopleInfo;
+
