@@ -5,16 +5,24 @@ import Col from "./Col";
 import SearchForm from "./SearchForm";
 import PeopleInfo from "./PeopleInfo";
 import PeopleList from "../data/people.json";
-import SortForm from "./SortForm";
-import PeopleSort from "./PeopleSort";
-
+import SortForm from "./SortForm"
 
 class PeopleContainer extends Component {
-  state = {
-    result: [],
+  constructor(props) {
+    super(props)
+  this.state = {
+    result: PeopleList,
     search: ""
-  };
+  }
+  this.sortBy = this.sortBy.bind(this);
+}
 
+sortBy = (key) => {
+    this.setState({
+        results: PeopleList.sortBy((a, b) => (a[key] > b[key]) ? 1 : -1)
+    })
+    console.log("new Peoplelist: ", PeopleList)
+}
   // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
     this.searchPeople();
@@ -31,6 +39,7 @@ class PeopleContainer extends Component {
     const searchResults = PeopleList.sort((people) => people.name === searchQuery);
     this.setState({ 'result': searchResults });
   };
+
 
   handleInputChange = event => {
     const value = event.target.value;
@@ -50,19 +59,19 @@ class PeopleContainer extends Component {
     event.preventDefault();
     this.sortPeople();
 
-    var nameArray = [PeopleList[0].name.last, 
-    PeopleList[1].name.last,
-    PeopleList[2].name.last,
-    PeopleList[3].name.last,
-    PeopleList[4].name.last,
-    PeopleList[5].name.last,
-    PeopleList[6].name.last,
-    PeopleList[7].name.last,
-    PeopleList[8].name.last,
-    PeopleList[9].name.last]
+  //   var nameArray = [PeopleList[0].name.last, 
+  //   PeopleList[1].name.last,
+  //   PeopleList[2].name.last,
+  //   PeopleList[3].name.last,
+  //   PeopleList[4].name.last,
+  //   PeopleList[5].name.last,
+  //   PeopleList[6].name.last,
+  //   PeopleList[7].name.last,
+  //   PeopleList[8].name.last,
+  //   PeopleList[9].name.last]
 
-    nameArray.sort()
-  console.log(nameArray)
+  //   nameArray.sort()
+  // console.log(nameArray)
   };
 
   render() {
@@ -81,7 +90,7 @@ class PeopleContainer extends Component {
           <Col size="md-5">
             <SortForm
               searchtype="People"
-              value={this.state.search}
+              value={this.state.sort}
               handleFormSort={this.handleFormSort}
             />
           </Col>
@@ -91,7 +100,10 @@ class PeopleContainer extends Component {
         <Row>
           <Col size="md-12">
             <hr />
-            <PeopleInfo search={this.state.search} />
+            <PeopleInfo 
+            search={this.state.search} 
+            sort={this.sort}
+            />
           </Col>
         </Row>
       </Container >

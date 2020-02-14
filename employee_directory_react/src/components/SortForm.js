@@ -10,11 +10,12 @@ function SortForm(props) {
         <br></br>
         <h4>Sort Alphabetically by Last Name</h4>
         <br></br>
+        <br></br>
       </div>
       <form>
-          <button onClick={props.handleFormSort} className="btn btn-primary">
-            Sort By Last Name
-        </button>
+      <button className="btn btn-primary" onClick={() => props.sort('lastName')}>
+            Last Name
+      </button>
       </form>
       <br></br>
       <br></br>
